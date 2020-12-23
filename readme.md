@@ -99,10 +99,11 @@ https://lucid.app/lucidchart/fedc4728-9636-4691-b53b-7a313be1a67e/edit?shared=tr
 
 
 ### MVP
-
+User should be able to 
 
 
 ### Stretch Goals
 
 
 ## Challenges:
+git 
