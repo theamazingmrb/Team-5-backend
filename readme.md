@@ -67,6 +67,8 @@ https://lucid.app/lucidchart/fedc4728-9636-4691-b53b-7a313be1a67e/edit?shared=tr
 1. User is able to add an event to their calendar
     * Confirm addition by navigating to 'My Calendar' page with all favorited events
     * CREATE route to add event in event model
+1. User should be able to delete an event to their calendar
+    * DELETE route to delete event in event model       
 1. User is able to write a review/comment on an event
     * PUT route to add comment to an event
 
