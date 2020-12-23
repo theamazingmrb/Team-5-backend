@@ -81,7 +81,8 @@ https://lucid.app/lucidchart/fedc4728-9636-4691-b53b-7a313be1a67e/edit?shared=tr
 |`"/profile"` | GET | READ | `user` & `calendar` | Displays user's profile and saved calendar
 |`"/events"`  | GET  | READ | N/A | Renders all search events for searched location
 |`"/events/id"`  | GET  | READ | `event` | Renders all event details for selected event
-|`"/events/id"`  | PUT  | UPDATE | `comment` | Allows user to add comment to an event
+|`"/events/id"`  | POST  | CREATE | `comment` | Allows user to add comment to an event
+|`"/events/id"`  | PUT  | UPDATE | `comment` | Allows user to update comment on an event
 |`"/events/id"`  | DELETE  | DELETE | `comment` | Allows user to delete comment to an event
 
 ### MVP
