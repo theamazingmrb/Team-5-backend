@@ -5,6 +5,9 @@ const db = {}
 
 db.user = require('./user.model')
 db.role = require('./role.model')
+db.comment = require('./comment.model')
+db.calendar = require('./calendar.model')
+db.event = require('./event.model')
 
 db.mongoose = mongoose;
 

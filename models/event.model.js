@@ -7,7 +7,10 @@ const Event = mongoose.model(
         date: Date,
         location: String, 
         image: String,
-        comments: [],
+        comments: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Comment"
+        }]
     })
 )
 

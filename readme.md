@@ -76,8 +76,13 @@ https://lucid.app/lucidchart/fedc4728-9636-4691-b53b-7a313be1a67e/edit?shared=tr
 | Route | HTTP Verb | CRUD | Model | Explanation
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 | `"/" or "/home"` | GET  | READ | N/A | Renders home page
+|`"/register"` | POST | CREATE | `user` | Renders form for new user to sign up
+|`"/login"` | POST | CREATE | `user` | Renders form for user to login
+|`"/profile"` | GET | READ | `user` & `calendar` | Displays user's profile and saved calendar
 |`"/events"`  | GET  | READ | N/A | Renders all search events for searched location
-|`"/profile"` | GET | READ | `user` | Displays user's profile and saved calendar
+|`"/events/id"`  | GET  | READ | `event` | Renders all event details for selected event
+|`"/events/id"`  | PUT  | UPDATE | `comment` | Allows user to add comment to an event
+|`"/events/id"`  | DELETE  | DELETE | `comment` | Allows user to delete comment to an event
 
 ### MVP
 User should be able to 
