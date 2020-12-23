@@ -75,28 +75,9 @@ https://lucid.app/lucidchart/fedc4728-9636-4691-b53b-7a313be1a67e/edit?shared=tr
 
 | Route | HTTP Verb | CRUD | Model | Explanation
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-| `"/"` | GET  | READ | N/A | Renders home page
-|`"/recipes"`  | GET  | READ | `recipe` | Renders all search recipes for searched recipe
-|`"/recipes/my-recipes"` | GET | READ | `recipe` | Displays user's saved favorite recipes
-|`"/recipes/my-recipes"` | POST | CREATE | `recipe` | Adds a new recipe to the user's favorite recipes
-|`"/recipes/my-recipes"` | DELETE | DELETE | `recipe` | Deletes recipe from user's favorite recipes
-|`"/recipes/:id"` | GET | READ | `recipe` | Displays selected recipe's details
-|`"/recipes/:id/comments"` | POST | CREATE | `comment` | Adds a new comment/review to a recipe
-|`"/recipes/:id/"` | DELETE | DELETE | `comment` | Deletes user's comment
-|`"/recipes/:id/"` | PUT | UPDATE | `comment` | Updates user's comment
-|`"/personals"` | GET | READ | `personal` | Get all of user's personally created recipes
-|`"/personals/show/:id"` | GET | READ | `personal` | Displays selected personally created recipe's details
-|`"/personals/show/:id"` | POST | CREATE | `personal` | Creates a new personally created recipe for the user
-|`"/personals/show/:id/"` | PUT | UPDATE | `personal` | Updates user's personally created recipe
-|`"/personals/:id/"` | DELETE | DELETE | `personal` | Deletes personally created recipe
-|`"/personals/new/"` | GET | READ | N/A | Renders page to edit a personally created recipe
-|`"/personals/edit/:id"` | GET | READ | N/A | Renders page to create a new recipe
-|`"/categories"` | GET | READ | N/A | Renders categories home page
-|`"/categories/breakfast"` | GET | READ | N/A | Displays breakfast related recipes
-|`"/categories/lunch"` | GET | READ | N/A | Displays lunch related recipes
-|`"/categories/dinner"` | GET | READ | N/A | Displays dinner related recipes
-|`"/categories/dessert"` | GET | READ | N/A | Displays dessert related recipes
-
+| `"/" or "/home"` | GET  | READ | N/A | Renders home page
+|`"/events"`  | GET  | READ | N/A | Renders all search events for searched location
+|`"/profile"` | GET | READ | `user` | Displays user's profile and saved calendar
 
 ### MVP
 User should be able to 
