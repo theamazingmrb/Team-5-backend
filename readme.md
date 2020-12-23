@@ -60,18 +60,15 @@ https://lucid.app/lucidchart/fedc4728-9636-4691-b53b-7a313be1a67e/edit?shared=tr
    * Add user to user model
 1. User is directed to home page after login
     * Create redirect to home page
-1. User is able to view pre-populated recipes or search for new recipes
-    * Set up API connection to pull from Spoonacular's API's available recipes
-    * Pull in all recipe details through API
-    * Redirect to recipe detail page when selected
-1. User is able to add a recipe to my 'cookbook'
-    * Confirm addition by navigating to 'My Recipes' page with all favorited recipes
-    * CREATE route to add recipe in recipe model
-1. User is able to view recipes according to category
-    * Click "Categories" link to navigate to categories page
-    * GET route to get recipes with certain category
-1. User is able to write a review/comment on a recipe
-    * PUT route to add comment to a recipe
+1. User is able to view pre-populated events or search for new events in their area
+    * Set up API connection to pull from Ticketmasters's API's events
+    * Pull in all event details through API
+    * Redirect to event detail page when selected
+1. User is able to add an event to their calendar
+    * Confirm addition by navigating to 'My Calendar' page with all favorited events
+    * CREATE route to add event in event model
+1. User is able to write a review/comment on an event
+    * PUT route to add comment to an event
 
 
 ### Routes
