@@ -4,8 +4,9 @@ const Event = mongoose.model(
     "Event",
     new mongoose.Schema({
         name: String,
-        date: String,
+        date: Date,
         location: String, 
+        image: String,
         comments: [],
     })
 )
