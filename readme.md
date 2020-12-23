@@ -79,6 +79,7 @@ https://lucid.app/lucidchart/fedc4728-9636-4691-b53b-7a313be1a67e/edit?shared=tr
 |`"/register"` | POST | CREATE | `user` | Renders form for new user to sign up
 |`"/login"` | POST | CREATE | `user` | Renders form for user to login
 |`"/profile"` | GET | READ | `user` & `calendar` | Displays user's profile and saved calendar
+|`"/profile"` | DELETE | DELETE | `calendar` | Removes saved event from calendar
 |`"/events"`  | GET  | READ | N/A | Renders all search events for searched location
 |`"/events/id"`  | GET  | READ | `event` | Renders all event details for selected event
 |`"/events/id"`  | POST  | CREATE | `comment` | Allows user to add comment to an event
