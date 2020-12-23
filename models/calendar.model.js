@@ -3,7 +3,10 @@ const mongoose = require('mongoose')
 const Calendar = mongoose.model(
     "Calendar",
     new mongoose.Schema({
-        events: []
+        events: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Event"
+        }]
     })
 )
 
