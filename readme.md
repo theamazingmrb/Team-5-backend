@@ -41,13 +41,17 @@ The FOMO NOMO App is for the user who is bored at home and is looking for new vi
 
 ### ERD
 
-https://lucid.app/lucidchart/fedc4728-9636-4691-b53b-7a313be1a67e/edit?shared=true&page=0_0#
+![Screen Shot 2020-12-23 at 11 28 01 AM](https://user-images.githubusercontent.com/68258139/103061169-4bbfc200-455f-11eb-9406-7117d269fac9.png)
 
 
 
 ### Original Wireframes
+Home Page:
+![Screen Shot 2020-12-23 at 9 17 25 PM](https://user-images.githubusercontent.com/68258139/103062876-69435a80-4564-11eb-8e03-f6bea83a5212.png)
+Event Page: 
+![Screen Shot 2020-12-23 at 9 23 47 PM](https://user-images.githubusercontent.com/68258139/103063141-3e0d3b00-4565-11eb-9b1d-0a3c1076bdb0.png)
+Profile Page: ![Screen Shot 2020-12-23 at 9 25 38 PM](https://user-images.githubusercontent.com/68258139/103063231-83ca0380-4565-11eb-9005-f9845d7b26a2.png)
 
-https://www.figma.com/file/mX3ffaiWw5n8SdHHM5pwDM/FOMO-NO-MO!?node-id=272890%3A0
 (Add photo once completed)
 
 
