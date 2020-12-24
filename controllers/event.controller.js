@@ -42,6 +42,7 @@ exports.deleteEvent = (req, res) => {
         _id: req.body.id
     }).then(function(){ 
         console.log("Data deleted"); // Success 
+        res.send({message: "Data Deleted"})
     }).catch(function(error){ 
         console.log(error); // Failure 
     }); 
