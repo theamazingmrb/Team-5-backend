@@ -14,7 +14,6 @@ exports.saveEvent = (req, res) => {
 
     // we save that user and if there is an error, we throw that error
     event.save((err, event) => {
-        console.log("EVENT SAVED??")
         if (err) {
             res.status(500).send({ message: err })
             return
@@ -35,4 +34,15 @@ exports.seeEvents = (req, res) => {
     .then((foundEvents)=>{
         res.send(foundEvents)
     })
+}
+
+// this will delete an event in the database
+exports.deleteEvent = (req, res) => {
+    Event.deleteOne({
+        _id: req.body.id
+    }).then(function(){ 
+        console.log("Data deleted"); // Success 
+    }).catch(function(error){ 
+        console.log(error); // Failure 
+    }); 
 }
