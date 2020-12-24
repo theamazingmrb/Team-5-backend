@@ -1,3 +1,6 @@
+const db=require('../models/user')
+const User= db.user
+
 exports.allAccess = (req, res) => {
     res.status(200).send("public content")
 }
@@ -9,3 +12,4 @@ exports.userBoard = (req, res) => {
 exports.adminBoard = (req, res) => {
     res.status(200).send("Admin content")
 }
+

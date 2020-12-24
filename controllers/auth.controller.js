@@ -114,3 +114,17 @@ exports.signin = (req, res) => {
         })
     })
 }
+
+// find and update user name
+exports.updateUsername= (req,res)=>{
+
+    console.log("user")
+    //update profile at username
+    User.findOneAndUpdate(req.body.username).then((data)=>{
+        if(!data){
+            return res.status(400).send({message: "No found Profile with username"})
+            }else{
+                res.send({message: "Username updated sucessfully"})
+            }
+    })
+}
