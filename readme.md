@@ -72,8 +72,6 @@ https://www.figma.com/file/mX3ffaiWw5n8SdHHM5pwDM/FOMO-NO-MO!?node-id=272890%3A0
 1. User is able to add an event to their calendar
     * Confirm addition by navigating to 'My Calendar' page with all favorited events
     * CREATE route to add event in event model
-1. User should be able to delete an event to their calendar
-    * DELETE route to delete event in event model       
 1. User is able to write a review/comment on an event
     * PUT route to add comment to an event
 
@@ -81,6 +79,7 @@ https://www.figma.com/file/mX3ffaiWw5n8SdHHM5pwDM/FOMO-NO-MO!?node-id=272890%3A0
 ### Routes
 
 | Route | HTTP Verb | CRUD | Model | Explanation
+<<<<<<< HEAD
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 | `"/" or "/home"` | GET  | READ | N/A | Renders home page
 |`"/register"` | POST | CREATE | `user` | Renders form for new user to sign up
@@ -93,6 +92,20 @@ https://www.figma.com/file/mX3ffaiWw5n8SdHHM5pwDM/FOMO-NO-MO!?node-id=272890%3A0
 |`"/events/:id/comments"` | POST  | CREATE | `comment` | Allows user to add comment to an event
 |`"/events/id"`  | PUT  | UPDATE | `comment` | Allows user to update comment on an event
 |`"/events/id"`  | DELETE  | DELETE | `comment` | Allows user to delete comment to an event
+=======
+ | ------------- | ------------- | ------------- | ------------- | ------------- |
+ | `"/" or "/home"` | GET  | READ | N/A | Renders home page
+ |`"/register"` | POST | CREATE | `user` | Renders form for new user to sign up
+ |`"/login"` | POST | CREATE | `user` | Renders form for user to login
+ |`"/profile"` | GET | READ | `user` & `calendar` | Displays user's profile and saved calendar
+ |`"/profile"` | POST | CREATE | `calendar` | Adds a saved event to the user's calendar
+ |`"/profile"` | DELETE | DELETE | `calendar` | Removes saved event from calendar
+ |`"/events"`  | GET  | READ | N/A | Renders all search events for searched location
+ |`"/events/id"`  | GET  | READ | `event` | Renders all event details for selected event
+ |`"/events/:id/comments"` | POST  | CREATE | `comment` | Allows user to add comment to an event
+ |`"/events/id"`  | PUT  | UPDATE | `comment` | Allows user to update comment on an event
+ |`"/events/id"`  | DELETE  | DELETE | `comment` | Allows user to delete comment to an event
+>>>>>>> 2cf162bd8a55f2a34d87f860b3c853127ca3f4ae
 
 
 
@@ -105,7 +118,11 @@ GET	/home	-axios call for events
 POST	/user/calendar	-add event to Calendar -->
 		
 ### MVP
+<<<<<<< HEAD
 - Signup and login  ✅
+=======
+- Signup and login  ✅
+>>>>>>> 2cf162bd8a55f2a34d87f860b3c853127ca3f4ae
 - to search for events (location, performer, venue, etc)
 - to add event to their user calendar
 - to update/delete their calendar
@@ -116,8 +133,16 @@ Be able to see user public pages
 
 ### Stretch Goals
 - User can add a phot to their profile using cloudanry
+<<<<<<< HEAD
 User should be able to recoomend events to other users 
 User should be able to give a star rating. 
 
 
 ## Challenges:
+=======
+- User should be able to recoomend events to other users 
+- User should be able to give a star rating. 
+
+
+## Challenges:
+>>>>>>> 2cf162bd8a55f2a34d87f860b3c853127ca3f4ae
