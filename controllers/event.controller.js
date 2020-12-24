@@ -1,6 +1,7 @@
 const db = require('../models/index')
 // access to our db through User and Role
 const Event = db.event
+const Calendar = db.calendar
 
 // this will save event to the database
 exports.saveEvent = (req, res) => {
@@ -26,6 +27,7 @@ exports.saveEvent = (req, res) => {
             image: event.image
         })
     })
+    Calendar.events.push(event)
 }
 
 // this will show all events in the database
