@@ -114,7 +114,7 @@ Be able to see user public pages
 
 ### Stretch Goals
 - User can add a phot to their profile using cloudanry
-- User should be able to recoomend events to other users 
+- User should be able to recommend events to other users 
 - User should be able to give a star rating. 
 
 
