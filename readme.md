@@ -46,9 +46,7 @@ The FOMO NOMO App is for the user who is bored at home and is looking for new vi
 * My Events Show Page (My Calendar)
 
 ### ERD:
-
-![Screen Shot 2020-12-23 at 11 28 01 AM](https://user-images.githubusercontent.com/68258139/103061169-4bbfc200-455f-11eb-9406-7117d269fac9.png)
-
+![Screen Shot 2020-12-24 at 17 25 24](https://user-images.githubusercontent.com/68154135/103107550-6c465580-460d-11eb-826f-24db53149811.png)
 
 
 ### Original Wireframes:
