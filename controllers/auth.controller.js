@@ -23,7 +23,7 @@ exports.signup = (req, res) => {
             res.status(500).send({message: err})
             return
         }
-
+        console.log(user)
         // if there is not an error, we check if roles was passed on req.params
         if(req.body.roles) {
             Role.find({

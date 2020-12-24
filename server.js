@@ -38,10 +38,16 @@ app.get('/', (req, res)=>{
     res.json({message: "Welcome to the home page"})
 })
 
+//simple route, do I work?
+app.get('/events/addevent', (req, res)=>{
+    res.json({message: "This should render events"})
+})
+
 //import the routes we wrote
-require('./routes/auth.routes')(app)
 //this require is going to return a function and then execute that function 
+require('./routes/auth.routes')(app)
 require('./routes/user.routes')(app)
+require('./routes/event.routes')(app)
 
 //set the port, listen for request
 const PORT =  process.env.PORT || 8080
