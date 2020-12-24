@@ -39,13 +39,13 @@ The FOMO NOMO App is for the user who is bored at home and is looking for new vi
 * Event Detail Pages
 * My Events Show Page (My Calendar)
 
-### ERD
+### ERD:
 
 ![Screen Shot 2020-12-23 at 11 28 01 AM](https://user-images.githubusercontent.com/68258139/103061169-4bbfc200-455f-11eb-9406-7117d269fac9.png)
 
 
 
-### Original Wireframes
+### Original Wireframes:
 Home Page:
 ![Screen Shot 2020-12-23 at 9 17 25 PM](https://user-images.githubusercontent.com/68258139/103062876-69435a80-4564-11eb-8e03-f6bea83a5212.png)
 Event Page: 
@@ -62,7 +62,7 @@ Profile Page: ![Screen Shot 2020-12-23 at 9 25 38 PM](https://user-images.github
 
 ```
 
-### User Stories
+### User Stories:
 1. User will land on a homepage and be directed to login / sign-up when any links are clicked
    * Create redirect to login page
    * Verify if user exists or if new sign up is needed (authentication)
@@ -80,13 +80,13 @@ Profile Page: ![Screen Shot 2020-12-23 at 9 25 38 PM](https://user-images.github
     * PUT route to add comment to an event
 
 
-### Routes
+### Routes:
 
 | Route | HTTP Verb | CRUD | Model | Explanation
  | ------------- | ------------- | ------------- | ------------- | ------------- |
- | `"/" or "/home"` | GET  | READ | N/A | Renders home page
- |`"/register"` | POST | CREATE | `user` | Renders form for new user to sign up
- |`"/login"` | POST | CREATE | `user` | Renders form for user to login
+ | `"/" or "/home"` ✅| GET  | READ | N/A | Renders home page
+ |`"/register"`✅ | POST | CREATE | `user` | Renders form for new user to sign up
+ |`"/login"` ✅| POST | CREATE | `user` | Renders form for user to login
  |`"/profile"` | GET | READ | `user` & `calendar` | Displays user's profile and saved calendar
  |`"/profile"` | POST | CREATE | `calendar` | Adds a saved event to the user's calendar
  |`"/profile"` | DELETE | DELETE | `calendar` | Removes saved event from calendar
@@ -94,19 +94,14 @@ Profile Page: ![Screen Shot 2020-12-23 at 9 25 38 PM](https://user-images.github
  |`"/events/id"`  | GET  | READ | `event` | Renders all event details for selected event
  |`"/events/:id/comments"` | POST  | CREATE | `comment` | Allows user to add comment to an event
  |`"/events/id"`  | PUT  | UPDATE | `comment` | Allows user to update comment on an event
- |`"/events/id"`  | DELETE  | DELETE | `comment` | Allows user to delete comment to an event
+ |`"/events/id"` ✅ | DELETE  | DELETE | `comment` | Allows user to delete comment to an event
 
 
 
 
-<!-- Methods	URLs	Actions
-GET	/ or /home	Visit the app landing page
-POST	/auth/signup	-User Signup
-POST	/auth/signin	-User Login
-GET	/home	-axios call for events
-POST	/user/calendar	-add event to Calendar -->
+
 		
-### MVP
+### MVP:
 - Signup and login  ✅
 - to search for events (location, performer, venue, etc)
 - to add event to their user calendar
@@ -116,8 +111,8 @@ Be able to see user public pages
 
 
 
-### Stretch Goals
-- User can add a phot to their profile using cloudanry
+### Stretch Goals:
+- User can add a photo to their profile using cloudinary
 - User should be able to recommend events to other users 
 - User should be able to give a star rating. 
 
