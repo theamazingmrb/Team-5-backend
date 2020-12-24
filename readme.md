@@ -8,7 +8,11 @@
 ```
 npm i
 ```
-3. 
+3. Access: 
+
+Link: 
+Test Email: 
+Test PAssword: 
 
 
 ---
@@ -16,6 +20,8 @@ npm i
 ## Concept:
 
 The FOMO NOMO App is for the user who is bored at home and is looking for new virtual events to avoid the FOMO. Users can add events to their personal calendar or coordinate attending events with their friends.
+
+
 
 ## Technologies Used:
 
@@ -78,23 +84,23 @@ Profile Page: ![Screen Shot 2020-12-23 at 9 25 38 PM](https://user-images.github
     * CREATE route to add event in event model
 1. User is able to write a review/comment on an event
     * PUT route to add comment to an event
+    
 
 
 ### Routes:
+![Screen Shot 2020-12-24 at 11 44 37 AM](https://user-images.githubusercontent.com/68258139/103104711-aac41c00-45dd-11eb-9fa7-20e9c06c493e.png)
+| Route | HTTP Verb | CRUD | Model | Explanation			
+| ------------- | ------------- | ------------- | ------------- | ------------- |			
+| `"/" or "/home"` ✅| GET | READ | N/A | Renders home page			
+|`"/register"`✅ | POST | CREATE | `user` | Renders form for new user to sign up			
+|`"/login"` ✅| POST | CREATE | `user` | Renders form for user to login			
+|`"/profile"` | GET | READ | `user` & `calendar` | Displays user's profile and saved calendar			
+|`"/profile"` | POST | CREATE | `calendar` | Adds a saved event to the user's calendar			
+|`"/profile"` | DELETE | DELETE | `calendar` | Removes saved event from calendar			
+|`"/events"` | GET | READ | N/A | Renders all search events for searched location			
+|`"/events/id"` | GET | READ | `event` | Renders all event details for selected event			
+|`"/events/:id/comments"` ✅| POST | CREATE | `comment` | Allows user to add comment to an event			
 
-| Route | HTTP Verb | CRUD | Model | Explanation
- | ------------- | ------------- | ------------- | ------------- | ------------- |
- | `"/" or "/home"` ✅| GET  | READ | N/A | Renders home page
- |`"/register"`✅ | POST | CREATE | `user` | Renders form for new user to sign up
- |`"/login"` ✅| POST | CREATE | `user` | Renders form for user to login
- |`"/profile"` | GET | READ | `user` & `calendar` | Displays user's profile and saved calendar
- |`"/profile"` | POST | CREATE | `calendar` | Adds a saved event to the user's calendar
- |`"/profile"` | DELETE | DELETE | `calendar` | Removes saved event from calendar
- |`"/events"`  | GET  | READ | N/A | Renders all search events for searched location
- |`"/events/id"`  | GET  | READ | `event` | Renders all event details for selected event
- |`"/events/:id/comments"` | POST  | CREATE | `comment` | Allows user to add comment to an event
- |`"/events/id"`  | PUT  | UPDATE | `comment` | Allows user to update comment on an event
- |`"/events/id"` ✅ | DELETE  | DELETE | `comment` | Allows user to delete comment to an event
 
 
 
