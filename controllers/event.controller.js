@@ -8,14 +8,15 @@ const Comment = db.comment
 exports.saveEvent = (req, res) => {
     // we are going to make our user object using the params returned from req
     const event = new Event({
+        id: req.body.id,
         name: req.body.name,
         date: req.body.date,
-        location: req.body.location,
-        image: req.body.image,
+        location: req.body.location
     })
 
     // we save that user and if there is an error, we throw that error
     event.save((err, event) => {
+        console.log("EVENT SAVED!!!!!")
         if (err) {
             res.status(500).send({ message: err })
             return
@@ -28,7 +29,6 @@ exports.saveEvent = (req, res) => {
             image: event.image
         })
     })
-    Calendar.events.push(event)
 }
 
 // this will show all events in the database
