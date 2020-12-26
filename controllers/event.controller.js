@@ -51,14 +51,20 @@ exports.deleteEvent = (req, res) => {
     }); 
 }
 
+
+
+
+
+
+
+
+
 // This is will save and delete comment to the database 
 exports.saveComment = (req, res) => {
-    // we are going to make our user object using the params returned from req
     const comment = new Comment({
-        // name: req.body.name,
-        // date: req.body.date,
-        // location: req.body.location,
-        // image: req.body.image,
+        name: req.body.name,
+        content: req.body.content,
+       
     })
 
     // we save that user and if there is an error, we throw that error
@@ -67,12 +73,10 @@ exports.saveComment = (req, res) => {
             res.status(500).send({ message: err })
             return
         }
-        res.send({
-            // id: event._id, 
-            // name: event.name,
-            // date: event.date,
-            // location: event.location,
-            // image: event.image
+        res.send({ 
+            name: comment.name,
+            date: comment.date,
+            
         })
     })
     Calendar.events.push(comment)
