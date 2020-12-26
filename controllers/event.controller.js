@@ -51,12 +51,7 @@ exports.deleteEvent = (req, res) => {
     }); 
 }
 
-
-
-
 // This is will save and delete comment to the database 
-
-
 exports.saveComment = (req, res) => {
     // we are going to make our user object using the params returned from req
     const comment = new Comment({
