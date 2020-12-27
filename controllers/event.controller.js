@@ -55,8 +55,7 @@ exports.deleteEvent = (req, res) => {
 
 
 
-
-
+//Comment routes work 
 
 
 // This is will save and delete comment to the database 
@@ -68,19 +67,34 @@ exports.saveComment = (req, res) => {
     })
 
     // we save that user and if there is an error, we throw that error
-    comment.save((err, event) => {
+//     comment.save(comment)
+//     .then((data)=>{
+//         res.send(data)
+// })
+// .catch((err)=>{
+//     res.status(500).send({
+//         message:
+//         err.message || "some error occured"
+//     });
+// });
+// }
+
+
+    comment.save((err, comment) => {
         if (err) {
             res.status(500).send({ message: err })
             return
         }
         res.send({ 
             name: comment.name,
-            date: comment.date,
+            content: comment.content,
             
         })
     })
-    Calendar.events.push(comment)
+//     Calendar.events.push(comment)
+// }
 }
+
 
 // this will show all comments in the database
 exports.seeComments = (req, res) => {
@@ -90,10 +104,11 @@ exports.seeComments = (req, res) => {
     })
 }
 
+
 // this will delete an delete in the database
 exports.deleteComment = (req, res) => {
     Comment.deleteOne({
-        _id: req.body.id
+        _id: req.params.id
     }).then(function(){ 
         console.log("Comment is deleted");  
         res.send({message: " Your comment has been Deleted"})
