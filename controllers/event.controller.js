@@ -58,7 +58,7 @@ exports.deleteEvent = (req, res) => {
 //Comment routes work 
 
 
-// This is will save and delete comment to the database 
+// This is will save  comment to the database 
 exports.saveComment = (req, res) => {
     const comment = new Comment({
         name: req.body.name,
@@ -66,19 +66,7 @@ exports.saveComment = (req, res) => {
        
     })
 
-    // we save that user and if there is an error, we throw that error
-//     comment.save(comment)
-//     .then((data)=>{
-//         res.send(data)
-// })
-// .catch((err)=>{
-//     res.status(500).send({
-//         message:
-//         err.message || "some error occured"
-//     });
-// });
-// }
-
+   // this saves the comment
 
     comment.save((err, comment) => {
         if (err) {
@@ -105,7 +93,7 @@ exports.seeComments = (req, res) => {
 }
 
 
-// this will delete an delete in the database
+// this will  delete comment in the database
 exports.deleteComment = (req, res) => {
     Comment.deleteOne({
         _id: req.params.id
@@ -116,3 +104,20 @@ exports.deleteComment = (req, res) => {
         
     }); 
 }
+
+//route does not work 
+// //routes to update calender 
+// exports.update = (req,res) => {
+//     const id = req.params.id;
+//     Comment.findByIdAndUpdate({_id :id}, req.body).then((data)=>{
+//         if(!data){
+//             res.status(400).send({message: "Not found comment with id" + id});
+//         }else{
+//             res.send(data)
+//         }
+//     })
+// }
+
+
+
+
