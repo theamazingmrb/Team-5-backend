@@ -2,48 +2,66 @@ const db = require('../models/index')
 // access to our db through User and Role
 const Event = db.event
 const Calendar = db.calendar
-const Comment = db.comment
+const User = db.user
 
 // this will save event to the database
 exports.saveEvent = (req, res) => {
-    // we are going to make our user object using the params returned from req
+    // we are going to make our event object using the params returned from req
     const event = new Event({
-        id: req.body.id,
+        eventId: req.body.id,
         name: req.body.name,
         date: req.body.date,
         location: req.body.location
     })
 
-    // we save that user and if there is an error, we throw that error
+    // we save that event and if there is an error, we throw that error
     event.save((err, event) => {
-        console.log("EVENT SAVED!!!!!")
         if (err) {
             res.status(500).send({ message: err })
             return
         }
         res.send({
             id: event._id, 
+            eventId: event.eventId,
             name: event.name,
             date: event.date,
-            location: event.location,
-            image: event.image
+            location: event.location
+        })
+    })
+
+    User.updateOne(
+        {_id: req.userId},
+        {$addToSet: {calendar: eventId}}
+    )
+    .then(data => {
+        console.log("Found the user and added the event")
+        res.send(data)
+    })
+    .catch(err=>{
+        res.status(500).send({
+          message: err.message || 'An error occurred while updating user calendar'
         })
     })
 }
 
 // this will show all events in the database
 exports.seeEvents = (req, res) => {
-    Event.find()
-    .then((foundEvents)=>{
-        res.send(foundEvents)
+    User.findOne(
+        {_id: req.body.id}
+    )
+    .then((foundUser)=>{
+        res.send(foundUser.calendar)
     })
 }
 
 // this will delete an event in the database
 exports.deleteEvent = (req, res) => {
-    Event.deleteOne({
-        _id: req.body.id
-    }).then(function(){ 
+    User.findOne({
+        _id: req.userId
+    }).then(function(foundUser){ 
+        foundUser.calendar.deleteOne({
+            _id: req.body.id
+        })
         console.log("Data deleted"); // Success 
         res.send({message: "Data Deleted"})
     }).catch(function(error){ 

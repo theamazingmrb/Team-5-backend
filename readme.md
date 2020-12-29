@@ -122,3 +122,7 @@ Be able to see user public pages
 
 
 ## Challenges:
+- Adding events to user's calendar
+- Saving frontend API data to backend
+- Associating comment to user and event
+- Testing in postman (specifically for user)

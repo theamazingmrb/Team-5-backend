@@ -14,7 +14,7 @@ exports.signup = (req, res) => {
     const user = new User({
         username: req.body.username,
         email: req.body.email,
-        password: bcrypt.hashSync(req.body.password, 8) // 8 is an option to pass on the hashing
+        password: bcrypt.hashSync(req.body.password, 8), // 8 is an option to pass on the hashing
     })
 
     // we save that user and if there is an error, we throw that error
@@ -110,6 +110,7 @@ exports.signin = (req, res) => {
             username: user.username,
             email: user.email,
             roles: authorities,
+            calendar: user.calendar,
             accessToken: token
         })
     })
