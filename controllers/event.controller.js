@@ -3,6 +3,8 @@ const db = require('../models/index')
 const Event = db.event
 const Calendar = db.calendar
 const Comment = db.comment
+const User= db.user
+
 
 // this will save event to the database
 exports.saveEvent = (req, res) => {
@@ -21,6 +23,9 @@ exports.saveEvent = (req, res) => {
             res.status(500).send({ message: err })
             return
         }
+        const calender = new Calendar ({
+            event:
+        })
         res.send({
             id: event._id, 
             name: event.name,
