@@ -6,11 +6,12 @@ const Comment = db.comment
 const User= db.user
 
 
+
 // this will save event to the database
 exports.saveEvent = (req, res) => {
     // we are going to make our event object using the params returned from req
     const event = new Event({
-        eventId: req.body.id,
+        eventId: req.body.eventId,
         name: req.body.name,
         date: req.body.date,
         location: req.body.location
@@ -51,28 +52,36 @@ exports.saveEvent = (req, res) => {
         })
     })
 
-    User.updateOne(
-        {_id: req.userId},
-        {$addToSet: {calendar: eventId}}
-    )
-    .then(data => {
-        console.log("Found the user and added the event")
-        res.send(data)
-    })
-    .catch(err=>{
-        res.status(500).send({
-          message: err.message || 'An error occurred while updating user calendar'
-        })
-    })
+    // User.updateOne(
+    //     {_id: req.userId},
+    //     {$addToSet: {calendar: eventId}}
+    // )
+    // .then(data => {
+    //     console.log("Found the user and added the event")
+    //     res.send(data)
+    // })
+    // .catch(err=>{
+    //     res.status(500).send({
+    //       message: err.message || 'An error occurred while updating user calendar'
+    //     })
+    // })
 }
 
 // this will show all events in the database
 exports.seeEvents = (req, res) => {
-    User.findOne(
-        {_id: req.body.id}
-    )
-    .then((foundUser)=>{
-        res.send(foundUser.calendar)
+    User.find ({
+        _id: req.userId
+        // the .exec return the user found
+    }).exec((err, user)=>{
+        // checking to see if the user has a calendar or not. If user has calendar, we add event and if user doesn't have calendar, we make on for them before adding event
+        if(user.calendar){
+            // the user has a calendar that has an array of events. We push an event to this events array
+           res.send(user.calendar.events)
+        }else{
+
+            message: "No events for this user"
+        }
+       
     })
 }
 
