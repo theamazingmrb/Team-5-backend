@@ -5,7 +5,6 @@ const Calendar = db.calendar
 const Comment = db.comment
 const User= db.user
 
-const User = db.user
 
 // this will save event to the database
 exports.saveEvent = (req, res) => {
@@ -23,15 +22,32 @@ exports.saveEvent = (req, res) => {
             res.status(500).send({ message: err })
             return
         }
-        const calender = new Calendar ({
-            event:
+       
+        // find the user making the request
+        User.find ({
+            _id: req.userId
+            // the .exec return the user found
+        }).exec((err, user)=>{
+            // checking to see if the user has a calendar or not. If user has calendar, we add event and if user doesn't have calendar, we make on for them before adding event
+            if(user.calendar){
+                // the user has a calendar that has an array of events. We push an event to this events array
+                user.calendar.events.push(event)
+            }else{
+                 const calender = new Calendar ({
+                 events: event 
+        })
+            user.calendar.push(calender)
+            }
+           
         })
         res.send({
-            id: event._id, 
-            eventId: event.eventId,
-            name: event.name,
-            date: event.date,
-            location: event.location
+            // id: event._id, 
+            // eventId: event.eventId,
+            // name: event.name,
+            // date: event.date,
+            // location: event.location
+
+            message: "Successfully created event"
         })
     })
 
