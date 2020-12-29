@@ -4,8 +4,8 @@ const { authJwt } = require('../middlewares')
 
 module.exports = function(app){
     app.get("/profile/myevents", controller.seeEvents)
-    app.post("/profile/events/addevent",[authJwt.verifyWebToken], controller.saveEvent)
-    app.delete("/profile/events/:id", controller.deleteEvent)
+    app.post("/profile/myevents/addevent",[authJwt.verifyWebToken], controller.saveEvent)
+    app.delete("/profile/myevents/:id", controller.deleteEvent)
 
     //routes for comments work
     app.get("/events/comment", controller.seeComments)
