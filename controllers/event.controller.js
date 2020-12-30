@@ -1,4 +1,5 @@
 const db = require('../models/index')
+const { calendar } = require('../models/index')
 // access to our db through User and Role
 const Event = db.event
 const Calendar = db.calendar
@@ -23,21 +24,25 @@ exports.saveEvent = (req, res) => {
             res.status(500).send({ message: err })
             return
         }
-
         // find the user making the request
-        User.find({
-            _id: req.userId
+        User.find(
+            {_id: req.userId}
             // the .exec return the user found
-        }).exec((err, user) => {
+        ).exec((err, user) => {
+            console.log("USER WAS FOUND!")
+            res.send
             // checking to see if the user has a calendar or not. If user has calendar, we add event and if user doesn't have calendar, we make on for them before adding event
             if (user.calendar) {
+                console.log("CALENDAR EXISTS")
+                console.log(user.calendar)
                 // the user has a calendar that has an array of events. We push an event to this events array
-                user.calendar.events.push(event)
             } else {
-                const calender = new Calendar({
+                const calendar = new Calendar({
                     events: event
                 })
-                user.calendar.push(calender)
+                calendar.save((err, calendar)=>{
+                    console.log("EVENT PUSHED TO CALENDAR", calendar)
+                })
             }
 
         })
@@ -46,8 +51,7 @@ exports.saveEvent = (req, res) => {
             // eventId: event.eventId,
             // name: event.name,
             // date: event.date,
-            // location: event.location
-
+            // location: event.location,
             message: "Successfully created event"
         })
     })
@@ -69,19 +73,19 @@ exports.saveEvent = (req, res) => {
 
 // this will show all events in the database
 exports.seeEvents = (req, res) => {
-    User.find ({
+    User.find({
         _id: req.userId
         // the .exec return the user found
-    }).exec((err, user)=>{
+    }).exec((err, user) => {
         // checking to see if the user has a calendar or not. If user has calendar, we add event and if user doesn't have calendar, we make on for them before adding event
-        if(user.calendar){
+        if (user.calendar) {
             // the user has a calendar that has an array of events. We push an event to this events array
-           res.send(user.calendar.events)
-        }else{
+            res.send(user.calendar.events)
+        } else {
 
             message: "No events for this user"
         }
-       
+
     })
 }
 
