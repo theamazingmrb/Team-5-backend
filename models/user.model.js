@@ -12,10 +12,10 @@ const User = mongoose.model(
                 ref: "Role"
             }
         ],
-        calendar: [
+        events: [
             {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: "Calendar"
+                ref: "Event"
             }
         ]
     })

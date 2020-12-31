@@ -3,7 +3,7 @@ const { authJwt } = require('../middlewares')
 
 
 module.exports = function(app){
-    app.get("/profile/myevents", controller.seeEvents)
+    app.get("/profile/myevents",[authJwt.verifyWebToken], controller.seeEvents)
     app.post("/profile/myevents/addevent",[authJwt.verifyWebToken], controller.saveEvent)
     app.delete("/profile/myevents/:id", controller.deleteEvent)
 

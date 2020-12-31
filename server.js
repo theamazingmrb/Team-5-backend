@@ -5,8 +5,13 @@ const cors = require("cors")
 const mongoose = require("mongoose")
 
 const app = express()
-
 app.use(cors())
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+  });
+
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json())
@@ -36,11 +41,6 @@ db.mongoose
 //simple route, do I work?
 app.get('/', (req, res)=>{
     res.json({message: "Welcome to the home page"})
-})
-
-//simple route, do I work?
-app.get('/events/addevent', (req, res)=>{
-    res.json({message: "This should render events"})
 })
 
 //import the routes we wrote

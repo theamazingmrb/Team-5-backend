@@ -1,12 +1,9 @@
 const db = require('../models/index')
-const { calendar } = require('../models/index')
+const { calendar, user } = require('../models/index')
 // access to our db through User and Role
 const Event = db.event
-const Calendar = db.calendar
 const Comment = db.comment
 const User = db.user
-
-
 
 // this will save event to the database
 exports.saveEvent = (req, res) => {
@@ -24,30 +21,22 @@ exports.saveEvent = (req, res) => {
             res.status(500).send({ message: err })
             return
         }
-        // find the user making the request
-        User.find(
-            {_id: req.userId}
-            // the .exec return the user found
-        ).exec((err, user) => {
-            console.log("USER WAS FOUND!")
-            res.send
-            // checking to see if the user has a calendar or not. If user has calendar, we add event and if user doesn't have calendar, we make on for them before adding event
-            if (user.calendar) {
-                console.log("CALENDAR EXISTS")
-                console.log(user.calendar)
-                // the user has a calendar that has an array of events. We push an event to this events array
-            } else {
-                const calendar = new Calendar({
-                    events: event
-                })
-                calendar.save((err, calendar)=>{
-                    console.log("EVENT PUSHED TO CALENDAR", calendar)
-                })
-            }
-
+        // update the user making the request by grabbing their id
+        User.updateOne(
+            { _id: req.userId },
+            // addToSet allows new additions to an array 
+            // this adds the saved event to the events array
+            { $addToSet: { events: event } }
+        )
+        //in order to execute the update, you have to call .exec
+        .exec((err, user) => {
+            //console.log not working due to updateOne
+            //updateOne automatically has its own console which shows if an update actually occurs
+            console.log(user)
         })
+        //send back the event's id and a message that shows it was successfully created
         res.send({
-            // id: event._id, 
+            id: event._id, 
             // eventId: event.eventId,
             // name: event.name,
             // date: event.date,
@@ -55,38 +44,22 @@ exports.saveEvent = (req, res) => {
             message: "Successfully created event"
         })
     })
-
-    // User.updateOne(
-    //     {_id: req.userId},
-    //     {$addToSet: {calendar: eventId}}
-    // )
-    // .then(data => {
-    //     console.log("Found the user and added the event")
-    //     res.send(data)
-    // })
-    // .catch(err=>{
-    //     res.status(500).send({
-    //       message: err.message || 'An error occurred while updating user calendar'
-    //     })
-    // })
 }
 
 // this will show all events in the database
 exports.seeEvents = (req, res) => {
-    User.find({
+    //find the user who's events you want to see
+    User.findOne({
         _id: req.userId
-        // the .exec return the user found
-    }).exec((err, user) => {
-        // checking to see if the user has a calendar or not. If user has calendar, we add event and if user doesn't have calendar, we make on for them before adding event
-        if (user.calendar) {
-            // the user has a calendar that has an array of events. We push an event to this events array
-            res.send(user.calendar.events)
-        } else {
-
-            message: "No events for this user"
-        }
-
     })
+    //make sure to pull in the actual event data not just the ObjectIds
+    //.populate will pull in the actual data
+    .populate('events')
+        // the .exec return the user found
+        .exec((err, user) => {
+            //send the whole user.events array so you can see the event data
+            res.send(user.events)
+        })
 }
 
 // this will delete an event in the database
@@ -105,8 +78,6 @@ exports.deleteEvent = (req, res) => {
 }
 
 //Comment routes work 
-
-
 // This is will save comment to the database 
 exports.saveComment = (req, res) => {
     const comment = new Comment({
@@ -114,7 +85,6 @@ exports.saveComment = (req, res) => {
         content: req.body.content,
 
     })
-
     // this saves the comment
 
     comment.save((err, comment) => {
