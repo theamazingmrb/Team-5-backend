@@ -1,5 +1,6 @@
 const db = require('../models/index')
 const { calendar, user } = require('../models/index')
+const { events } = require('../models/user.model')
 // access to our db through User and Role
 const Event = db.event
 const Comment = db.comment
@@ -63,19 +64,37 @@ exports.seeEvents = (req, res) => {
 }
 
 // this will delete an event in the database
-exports.deleteEvent = (req, res) => {
-    User.findOne({
-        _id: req.userId
-    }).then(function (foundUser) {
-        foundUser.calendar.deleteOne({
-            _id: req.body.id
-        })
-        console.log("Data deleted"); // Success 
-        res.send({ message: "Data Deleted" })
-    }).catch(function (error) {
-        console.log(error); // Failure 
-    });
-}
+// exports.deleteEvent = (req, res) => {
+//     console.log(req.params.UserId)
+//     User.findOne({
+//         _id: req.params.userId
+       
+//     }).then(function (foundUser) {
+//         console.log(foundUser)
+//         foundUser.calendar.remove({
+//             _id: req.body.id
+//         })
+//         console.log("Data deleted"); // Success 
+//         res.send({ message: "Data Deleted" })
+//     }).catch(function (error) {
+//         console.log(error); // Failure 
+//     });
+// }
+
+    exports.deleteEvent = (req, res) => {
+
+        events.findByIdAndRemove(req.params.eventId, (err, todo) => {
+    // As always, handle any potential errors:
+    if (err) return res.status(500).send(err);
+    // We'll create a simple object to send back with a message and the id of the document that was removed
+    // You can really do this however you want, though.
+    const response = {
+        message: "event successfully deleted",
+        id: events._id
+    };
+    return res.status(200).send(response);
+});
+    }
 
 //Comment routes work 
 // This is will save comment to the database 
