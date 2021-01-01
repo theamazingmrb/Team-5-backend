@@ -11,6 +11,6 @@ module.exports = function(app){
     app.get("/events/comment", controller.seeComments)
     app.post("/events/newcomment", controller.saveComment)
     app.delete("/events/comment/:id", controller.deleteComment)
-    //app.put("/events/updatedcomment/:id", controller.updateComment)
+    app.put("/events/updatedcomment/:id", controller.updateComment)
     
 }

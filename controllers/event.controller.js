@@ -65,9 +65,9 @@ exports.seeEvents = (req, res) => {
 
 // this will delete an event in the database
 // exports.deleteEvent = (req, res) => {
-//     console.log(req.params.UserId)
+//     console.log(req.userId)
 //     User.findOne({
-//         _id: req.params.userId
+//         _id: req.userId
        
 //     }).then(function (foundUser) {
 //         console.log(foundUser)
@@ -80,21 +80,16 @@ exports.seeEvents = (req, res) => {
 //         console.log(error); // Failure 
 //     });
 // }
+exports.deleteEvent = (req, res)=>{
+    Event.deleteOne({
+        _id: req.params.id
+    }).then(function () {
+        console.log("Event is deleted");
+        res.send({ message: " Your event has been Deleted" })
+    }).catch(function (error) {
 
-    exports.deleteEvent = (req, res) => {
-
-        events.findByIdAndRemove(req.params.eventId, (err, todo) => {
-    // As always, handle any potential errors:
-    if (err) return res.status(500).send(err);
-    // We'll create a simple object to send back with a message and the id of the document that was removed
-    // You can really do this however you want, though.
-    const response = {
-        message: "event successfully deleted",
-        id: events._id
-    };
-    return res.status(200).send(response);
-});
-    }
+    });
+}
 
 //Comment routes work 
 // This is will save comment to the database 
@@ -142,17 +137,17 @@ exports.deleteComment = (req, res) => {
 }
 
 //route does not work 
-// //routes to update calender 
-// exports.update = (req,res) => {
-//     const id = req.params.id;
-//     Comment.findByIdAndUpdate({_id :id}, req.body).then((data)=>{
-//         if(!data){
-//             res.status(400).send({message: "Not found comment with id" + id});
-//         }else{
-//             res.send(data)
-//         }
-//     })
-// }
+// //routes to update comment 
+exports.updateComment = (req,res) => {
+    const id = req.params.id
+    Comment.findByIdAndUpdate({_id :id}, req.body).then((data)=>{
+        if(!data){
+            res.status(400).send({message: "Not found comment with id" + id});
+        }else{
+            res.send(data)
+        }
+    })
+}
 
 
 
