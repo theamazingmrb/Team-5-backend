@@ -53,7 +53,6 @@ exports.seeEvents = (req, res) => {
     console.log(req.userId)
     User.findOne({
         _id: req.userId
-        
     })
     
     //make sure to pull in the actual event data not just the ObjectIds
@@ -203,21 +202,6 @@ exports.deleteComment = (req, res) => {
 
 }
 
-<<<<<<< HEAD
-
-// //routes to update comment 
-exports.updateComment = (req,res) => {
-    const id = req.params.id
-    // you have to add the items in
-    Comment.findByIdAndUpdate(id, {name:req.body.name, content: req.body.content}).then((data)=>{
-        if(!data){
-            res.status(400).send({message: "Not found comment with id" + id});
-        }else{
-            res.send(data)
-        }
-    })
-}
-=======
 exports.updateComment = (req,res) =>{
     Comment.updateOne({
         _id: req.params.id
@@ -242,7 +226,6 @@ exports.updateComment = (req,res) =>{
 }
 
 
->>>>>>> 23cdcbe5c3414028ecd59c7a9e78b1194e264b97
 
 
 
