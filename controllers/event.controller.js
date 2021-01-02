@@ -197,17 +197,28 @@ exports.seeComment = (req, res) => {
 }
 
 // this will  delete comment in the database
-exports.deleteComment = (req, res) => {
-    // Comment.deleteOne({
-    //     _id: req.params.id
-    // }).then(function () {
-    //     console.log("Comment is deleted");
-    //     res.send({ message: " Your comment has been Deleted" })
-    // }).catch(function (error) {
 
-    // });
+exports.deleteComment = (req, res)=>{
 
+    Comment.deleteOne({
+        _id: req.params.id 
+    }).then(function (Comment) {
+        User.updateOne(
+            { _id: req.userId },
+            // addToSet allows new additions to an array 
+            // this adds the saved event to the events array
+            { $pull: { comments: comment } }
+        )
+        // console.log("Event is deleted");
+        res.send({ message: " Your event has been Deleted" })
+    }).catch(function (error) {
+
+    });
 }
+
+
+
+
 
 
 // //routes to update comment 
