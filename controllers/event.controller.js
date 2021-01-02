@@ -104,11 +104,19 @@ exports.saveComment = (req, res) => {
 
 // this will show all comments in the database
 exports.seeComments = (req, res) => {
-    Comment.find()
-        .then((foundComments) => {
-            res.send(foundComments)
+    //find the user who's events you want to see
+    User.findOne({
+        _id: req.userId
+    })
+    .populate('comments')
+        // the .exec return the user found
+        .exec((err, user) => {
+            //send the whole user.events array so you can see the event data
+            res.send(user.comments)
         })
 }
+
+
 
 // this will  delete comment in the database
 exports.deleteComment = (req, res) => {
