@@ -8,9 +8,19 @@ module.exports = function(app){
     app.delete("/profile/myevents/:id", controller.deleteEvent)
 
     //routes for comments work
-    app.get("/events/comment", controller.seeComments)
-    app.post("/events/newcomment", controller.saveComment)
-    app.delete("/events/comment/:id", controller.deleteComment)
+    // adding event IDs to request params so that comments are associated to a specific event
+
+    // TEST EVENT: 5ff032a5af0ccd691a554141
+
+    app.get("/events/comments/:id",
+    // [authJwt.verifyWebToken],
+    controller.seeComments)
+    app.post("/events/newcomment/:id",
+    // [authJwt.verifyWebToken],
+     controller.saveComment)
+    app.delete("/events/comment/:id",
+    // [authJwt.verifyWebToken],
+     controller.deleteComment)
     //app.put("/events/updatedcomment/:id", controller.updateComment)
     
 }
