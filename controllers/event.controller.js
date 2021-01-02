@@ -117,7 +117,7 @@ exports.saveComment = (req, res) => {
 }
 
 // shows comments made by the user for the event specified in the request
-exports.seeComments = (req, res) => {
+exports.seeComment = (req, res) => {
     //find user's event IDs so we can check them against the param id's being entered so that the current user can only access their own events' comments 
     User.findOne({
         _id: req.userId
@@ -184,10 +184,13 @@ exports.updateComment = (req,res) =>{
             res.send('No updates made to cpmment')
         }
     })
-    .catch(err=>{
-        res.send(err.message)
+    .catch((err)=>{
+        res.status(500).send({
+            message: err.message || "some error occurred while updating comments"
+        })
     })
 }
+
 
 
 

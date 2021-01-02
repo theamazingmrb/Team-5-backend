@@ -12,15 +12,18 @@ module.exports = function(app){
 
     // TEST EVENT: 5ff032a5af0ccd691a554141
 
-    app.get("/events/comments/:id",
+
+    app.get("/events/comment/:id",
     // [authJwt.verifyWebToken],
-    controller.seeComments)
+    controller.seeComment)
     app.post("/events/newcomment/:id",
     // [authJwt.verifyWebToken],
      controller.saveComment)
     app.delete("/events/comment/:id",
     // [authJwt.verifyWebToken],
      controller.deleteComment)
-    //app.put("/events/updatedcomment/:id", controller.updateComment)
+    app.put("/events/editcomment/:id", 
+    // [authJwt.verifyWebToken],
+    controller.updateComment)
     
 }
