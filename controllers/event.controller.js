@@ -92,6 +92,23 @@ exports.deleteEvent = (req, res)=>{
     }).catch(function (error) {
 
     });
+// this is another way to delete an event
+
+    // const id = req.userId
+    // Event.remove(
+    //     {_id: id}
+    // ).then(data => {
+    //     if(!data) {
+    //         res.status(404).send({
+    //             message: `can’t delete id=${id}`
+    //         });
+    //     } else res.send({message: “event deleted”})
+    //     })
+    //     .catch(err => {
+    //         res.send(500).send({
+    //             message: “error deleting event with id=” + id
+    //         })
+    // });
 }
 
 //Comment routes work 
@@ -129,15 +146,17 @@ exports.seeComments = (req, res) => {
 
 // this will  delete comment in the database
 exports.deleteComment = (req, res) => {
-    Comment.deleteOne({
-        _id: req.params.id
-    }).then(function () {
-        console.log("Comment is deleted");
-        res.send({ message: " Your comment has been Deleted" })
-    }).catch(function (error) {
+    // Comment.deleteOne({
+    //     _id: req.params.id
+    // }).then(function () {
+    //     console.log("Comment is deleted");
+    //     res.send({ message: " Your comment has been Deleted" })
+    // }).catch(function (error) {
 
-    });
+    // });
+
 }
+
 
 // //routes to update comment 
 exports.updateComment = (req,res) => {
