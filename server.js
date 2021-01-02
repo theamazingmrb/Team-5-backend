@@ -151,16 +151,16 @@ const Comment = db.comment
 //User.find().then(it=>{console.log(it)})
 
 
-    Event.findOne({
-        _id: '5ff032a5af0ccd691a554141'
-    })
-    .populate('comments')
-    .then(updateEvent=>{
-        console.log(updateEvent)
-    })
-    .catch(err => {
-        console.error("Event DB Error", err)
-        process.exit()
-    })
+    // Event.findOne({
+    //     _id: '5ff032a5af0ccd691a554141'
+    // })
+    // .populate('comments')
+    // .then(updateEvent=>{
+    //     console.log(updateEvent)
+    // })
+    // .catch(err => {
+    //     console.error("Event DB Error", err)
+    //     process.exit()
+    // })
 
 //Comment.find().then(x=>{console.log(x)})
