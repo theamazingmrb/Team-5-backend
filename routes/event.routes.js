@@ -3,14 +3,15 @@ const { authJwt } = require('../middlewares')
 
 
 module.exports = function(app){
-    app.get("/profile/myevents",[authJwt.verifyWebToken], controller.seeEvents)
-    app.post("/profile/myevents/addevent",[authJwt.verifyWebToken], controller.saveEvent)
-    app.delete("/profile/myevents/:id", controller.deleteEvent)
+    // routes for events
+    app.get("/profile/myevents",[authJwt.verifyWebToken], controller.seeEvents) //NAOMI
+    app.post("/profile/myevents/addevent",[authJwt.verifyWebToken], controller.saveEvent) // CAMILLE
+    app.delete("/profile/myevents/:id", controller.deleteEvent) // PREET
 
-    //routes for comments work
-    // app.get("/events/comment", controller.seeComments)
-    // app.post("/events/newcomment", controller.saveComment)
-    // app.delete("/events/comment/:id", controller.deleteComment)
-    // app.put("/events/updatedcomment/:id", controller.updateComment)
+    // routes for comments work
+    app.get("/events/comment", controller.seeComments) // KRYSTLE
+    app.post("/events/newcomment", controller.saveComment) //KRYSTLE
+    app.delete("/events/comment/:id", controller.deleteComment) // PREET
+    app.put("/events/updatedcomment/:id", controller.updateComment) //NAOMI
     
 }
