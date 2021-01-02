@@ -202,11 +202,12 @@ exports.deleteComment = (req, res)=>{
 
     Comment.deleteOne({
         _id: req.params.id 
-    }).then(function (Comment) {
+    }).then(function (comment) {
+        console.log(comment)
         User.updateOne(
+    
             { _id: req.userId },
-            // addToSet allows new additions to an array 
-            // this adds the saved event to the events array
+            
             { $pull: { comments: comment } }
         )
         // console.log("Event is deleted");
