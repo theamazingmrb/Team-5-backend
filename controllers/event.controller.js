@@ -83,9 +83,13 @@ exports.seeEvents = (req, res) => {
 //     });
 // }
 exports.deleteEvent = (req, res)=>{
-    Event.deleteOne({
-        _id: req.params.id
-    }).then(function () {
+    
+    User.updateOne(
+        { _id: req.userId },
+        // addToSet allows new additions to an array 
+        // this adds the saved event to the events array
+        { $pull: { events: { _id: req.params.id}} }
+    ).then(function () {
         console.log("Event is deleted");
         res.send({ message: " Your event has been Deleted" })
     }).catch(function (error) {
@@ -202,28 +206,41 @@ exports.deleteComment = (req, res) => {
 
 }
 
-exports.updateComment = (req,res) =>{
-    Comment.updateOne({
-        _id: req.params.id
-    },{
-        $set: {
-            name: req.body.name,
-            content: req.body.content
+
+// //routes to update comment 
+exports.updateComment = (req,res) => {
+    const id = req.params.id
+    // you have to add the items in
+    Comment.findByIdAndUpdate(id, {name:req.body.name, content: req.body.content}).then((data)=>{
+        if(!data){
+            res.status(400).send({message: "Not found comment with id" + id});
+        }else{
+            res.send(data)
         }
-    })
-    .then(updatedComment=>{
-        if(updatedComment.nModified!==0){
-            res.send('comment successfully updated')
-        } else {
-            res.send('No updates made to cpmment')
-        }
-    })
-    .catch((err)=>{
-        res.status(500).send({
-            message: err.message || "some error occurred while updating comments"
-        })
     })
 }
+// exports.updateComment = (req,res) =>{
+//     Comment.updateOne({
+//         _id: req.params.id
+//     },{
+//         $set: {
+//             name: req.body.name,
+//             content: req.body.content
+//         }
+//     })
+//     .then(updatedComment=>{
+//         if(updatedComment.nModified!==0){
+//             res.send('comment successfully updated')
+//         } else {
+//             res.send('No updates made to cpmment')
+//         }
+//     })
+//     .catch((err)=>{
+//         res.status(500).send({
+//             message: err.message || "some error occurred while updating comments"
+//         })
+//     })
+// }
 
 
 
