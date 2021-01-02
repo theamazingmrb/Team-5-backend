@@ -50,9 +50,12 @@ exports.saveEvent = (req, res) => {
 // this will show all events in the database
 exports.seeEvents = (req, res) => {
     //find the user who's events you want to see
+    console.log(req.userId)
     User.findOne({
         _id: req.userId
+        
     })
+    
     //make sure to pull in the actual event data not just the ObjectIds
     //.populate will pull in the actual data
     .populate('events')
@@ -136,11 +139,11 @@ exports.deleteComment = (req, res) => {
     });
 }
 
-//route does not work 
 // //routes to update comment 
 exports.updateComment = (req,res) => {
     const id = req.params.id
-    Comment.findByIdAndUpdate({_id :id}, req.body).then((data)=>{
+    // you have to add the items in
+    Comment.findByIdAndUpdate(id, {name:req.body.name, content: req.body.content}).then((data)=>{
         if(!data){
             res.status(400).send({message: "Not found comment with id" + id});
         }else{
