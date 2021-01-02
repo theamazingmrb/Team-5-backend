@@ -84,9 +84,13 @@ exports.seeEvents = (req, res) => {
 //     });
 // }
 exports.deleteEvent = (req, res)=>{
-    Event.deleteOne({
-        _id: req.params.id
-    }).then(function () {
+
+    User.updateOne(
+        { _id: req.userId },
+        // addToSet allows new additions to an array 
+        // this adds the saved event to the events array
+        { $pull: { events: eventId } }
+    ).then(function () {
         console.log("Event is deleted");
         res.send({ message: " Your event has been Deleted" })
     }).catch(function (error) {
@@ -203,7 +207,6 @@ exports.deleteComment = (req, res) => {
 
 }
 
-<<<<<<< HEAD
 
 // //routes to update comment 
 exports.updateComment = (req,res) => {
@@ -217,32 +220,30 @@ exports.updateComment = (req,res) => {
         }
     })
 }
-=======
-exports.updateComment = (req,res) =>{
-    Comment.updateOne({
-        _id: req.params.id
-    },{
-        $set: {
-            name: req.body.name,
-            content: req.body.content
-        }
-    })
-    .then(updatedComment=>{
-        if(updatedComment.nModified!==0){
-            res.send('comment successfully updated')
-        } else {
-            res.send('No updates made to cpmment')
-        }
-    })
-    .catch((err)=>{
-        res.status(500).send({
-            message: err.message || "some error occurred while updating comments"
-        })
-    })
-}
+// exports.updateComment = (req,res) =>{
+//     Comment.updateOne({
+//         _id: req.params.id
+//     },{
+//         $set: {
+//             name: req.body.name,
+//             content: req.body.content
+//         }
+//     })
+//     .then(updatedComment=>{
+//         if(updatedComment.nModified!==0){
+//             res.send('comment successfully updated')
+//         } else {
+//             res.send('No updates made to cpmment')
+//         }
+//     })
+//     .catch((err)=>{
+//         res.status(500).send({
+//             message: err.message || "some error occurred while updating comments"
+//         })
+//     })
+// }
 
 
->>>>>>> 23cdcbe5c3414028ecd59c7a9e78b1194e264b97
 
 
 
