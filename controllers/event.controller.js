@@ -89,7 +89,7 @@ exports.deleteEvent = (req, res)=>{
         { _id: req.userId },
         // addToSet allows new additions to an array 
         // this adds the saved event to the events array
-        { $pull: { events: eventId } }
+        { $pull: { events: {_id:req.params.id}} }
     ).then(function () {
         console.log("Event is deleted");
         res.send({ message: " Your event has been Deleted" })
