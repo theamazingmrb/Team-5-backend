@@ -84,76 +84,38 @@ const initial = () =>{
 
 
 const User = db.user
-// const newUser = new User({
-//     username: 'user1',
-//     email: 'test1@yahoo.com',
-//     password: 'password',
-//     roles: [ '5ff02f076743f908c01b7b15' ],
-//     events: []
-// })
-// newUser.save(newUser)
-//User.find().then(it=>{console.log(it)})
-
 const Event = db.event
-// const newEvent= new Event ({
-//     eventId: '5000',
-//     name: 'TestEvent1',
-//     date: new Date(),
-//     location: 'SF',
-//     comments: []
-// })
-// newEvent.save(newEvent)
-
-//Event.find({_id:'5ff032a5af0ccd691a554141'}).then(stuff=>{console.log(stuff)})
-
-// User.updateOne({
-//     _id: '5ff0336e0128527e4014b877'
-// },{
-//     $addToSet: {
-//         events: '5ff032a5af0ccd691a554141'
-//     }
-// },{
-//     upsert:true
-// }).then(changed=>{
-//     console.log(changed)
-// })
-
-// User.find({
-//     _id: '5ff0336e0128527e4014b877'
-// }).populate('events').then(changed=>{
-//     console.log(changed[0])
-// })
-
 const Comment = db.comment
-//Comment.find().then(f=>{console.log(f)})
+
+
+
+
+
+
 
 // const newComment = new Comment({
 //     name: 'comment2',
 //     content: 'Second Test',
 // })
 // newComment.save(newComment)
-// .then(newCom=>{
-//     Event.updateOne({
-//         _id: '5ff032a5af0ccd691a554141'
-//     },
-//     {   $addToSet: { comments: newCom }
-//     },{
-//         upsert: true
-//     })
-//     .then(updateEvent=>{
-//         if(updateEvent.nModified!==0){
-//             console.log('Event comments updated')
-//         } else {
-//             console.log('No updates made to event')
-//         }
-//     })
-// })
-// .catch(err => {
-//     console.error("Event DB Error", err)
-//     process.exit()
-// })
 
+// const newEvent= new Event ({
+//     eventId: '5000',
+//     name: 'TestEvent1',
+//     date: new Date(),
+//     location: 'SF',
+//     comments: [newComment]
+// })
+// newEvent.save(newEvent)
 
+// const newUser = new User({
+//     username: 'user1',
+//     email: 'test1@yahoo.com',
+//     password: 'password',
+//     roles: [ '5ff02f076743f908c01b7b15' ],
+//     events: [newEvent]
+// })
+// newUser.save(newUser)
 
 // User.findOne({
 //     _id: '5ff0336e0128527e4014b877'
@@ -184,30 +146,21 @@ const Comment = db.comment
 //     process.exit()
 // })
 
-// User.find({
-//     _id: '5ff0336e0128527e4014b877'
-// })
-// .populate('events')
-// .then(changed=>{
-//     eventId=changed[0].events[0]._id;
-//     Event.update({
-//         _id: eventId
-//     },{
-//         $addToSet: {
-//             comments: '5ff035db85266c39e43aaf57'
-//         }
-//     })
-//     .then(foundEvent=>{
-//         console.log(foundEvent)
-//     })
-//     .catch(err => {
-//         console.error("Event DB Error", err)
-//         process.exit()
-//     })
-// })
-// .catch(err => {
-//     console.error("User DB Error", err)
-//     process.exit()
-// })
+
 //5ff035db85266c39e43aaf57
 //User.find().then(it=>{console.log(it)})
+
+
+    Event.findOne({
+        _id: '5ff032a5af0ccd691a554141'
+    })
+    .populate('comments')
+    .then(updateEvent=>{
+        console.log(updateEvent)
+    })
+    .catch(err => {
+        console.error("Event DB Error", err)
+        process.exit()
+    })
+
+//Comment.find().then(x=>{console.log(x)})

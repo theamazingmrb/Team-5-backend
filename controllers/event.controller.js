@@ -77,7 +77,6 @@ exports.deleteEvent = (req, res) => {
     });
 }
 
-//Comment routes work 
 // This is will save comment to the database 
 exports.saveComment = (req, res) => {
     // create a new comment isntance
@@ -91,34 +90,29 @@ exports.saveComment = (req, res) => {
             res.status(500).send({ message: err })
             return
         }
-        // res.send({
-        //     name: comment.name,
-        //     content: comment.content
-        // })
-    })
-    // update the event to include the new comment
-    Event.updateOne({
-        // ====== TODO ========
-        // NEED TO ACCESS THE EVENT ID INSIDE THE REQUEST BODY, IS THIS IN REQ.PARAMS or REQ.BODY?
-        // ====================
-        _id: req.eventId
-    },{
-        // appending new comment to this event's comments array
-        $addToSet: { comments: comment }
-    },{
-        upsert: true 
-    })
-    .then(updateEvent=>{
-        if(updateEvent.nModified!==0){
-            console.log('Event comments updated')
-        } else {
-            console.log('No updates made to event')
-        };
-        res.send(comment)
-    })
-    .catch(err => {
-        console.error("Event DB Error", err)
-        process.exit()
+        // update the event to include the new comment
+        Event.updateOne(
+            {
+                _id: req.params.id
+            },{
+                // appending new comment to this event's comments array
+                $addToSet: { comments: comment }
+            },{
+                upsert: true 
+            }
+        )
+        .then(updateEvent=>{
+            if(updateEvent.nModified!==0){
+                console.log('Event comments updated')
+            } else {
+                console.log('No updates made to event')
+            };
+            res.send(comment)
+        })
+        .catch(err => {
+            console.error("Event DB Error", err)
+            process.exit()
+        })
     })
 }
 
@@ -162,8 +156,6 @@ exports.seeComments = (req, res) => {
     })
 }
 
-
-
 // this will  delete comment in the database
 exports.deleteComment = (req, res) => {
     Comment.deleteOne({
@@ -176,18 +168,27 @@ exports.deleteComment = (req, res) => {
     });
 }
 
-//route does not work 
-// //routes to update calender 
-// exports.update = (req,res) => {
-//     const id = req.params.id;
-//     Comment.findByIdAndUpdate({_id :id}, req.body).then((data)=>{
-//         if(!data){
-//             res.status(400).send({message: "Not found comment with id" + id});
-//         }else{
-//             res.send(data)
-//         }
-//     })
-// }
+exports.updateComment = (req,res) =>{
+    Comment.updateOne({
+        _id: req.params.id
+    },{
+        $set: {
+            name: req.body.name,
+            content: req.body.content
+        }
+    })
+    .then(updatedComment=>{
+        if(updatedComment.nModified!==0){
+            res.send('comment successfully updated')
+        } else {
+            res.send('No updates made to cpmment')
+        }
+    })
+    .catch(err=>{
+        res.send(err.message)
+    })
+}
+
 
 
 
