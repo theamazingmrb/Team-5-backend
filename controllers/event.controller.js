@@ -157,7 +157,7 @@ exports.saveComment = (req, res) => {
 }
 
 // shows comments made by the user for the event specified in the request
-exports.seeComment = (req, res) => {
+exports.seeComments = (req, res) => {
     //find user's event IDs so we can check them against the param id's being entered so that the current user can only access their own events' comments 
     User.findOne({
         _id: req.userId
