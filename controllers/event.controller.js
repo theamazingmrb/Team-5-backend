@@ -132,14 +132,10 @@ exports.saveComment = (req, res) => {
         }
         // update the event to include the new comment
         Event.updateOne(
-            {
-                _id: req.params.id
-            },{
+            { _id: req.params.id },
                 // appending new comment to this event's comments array
-                $addToSet: { comments: comment }
-            },{
-                upsert: true 
-            }
+            { $addToSet: { comments: comment } },
+            { upsert: true  }
         )
         .then(updateEvent=>{
             if(updateEvent.nModified!==0){
@@ -147,8 +143,16 @@ exports.saveComment = (req, res) => {
             } else {
                 console.log('No updates made to event')
             };
-            res.send(comment)
+            Event.findOne(
+                { _id: req.params.id }
+            )
+            .populate('comments')
+            .then(updatedEvent=>{
+                res.send(updatedEvent)
+            })
         })
+        .then(
+        )
         .catch(err => {
             console.error("Event DB Error", err)
             process.exit()
@@ -162,7 +166,7 @@ exports.seeComments = (req, res) => {
     User.findOne({
         _id: req.userId
         // using sample ID below for testing
-        // _id: '5ff0336e0128527e4014b877'
+        // _id: '5ff0336e0128527e4014b877' 
     })
     //get the event ids from their events array
     .populate('events','_id')
@@ -197,29 +201,19 @@ exports.seeComments = (req, res) => {
 }
 
 // this will  delete comment in the database
-
-exports.deleteComment = (req, res)=>{
-
-    Comment.deleteOne({
-        _id: req.params.id 
-    }).then(function (comment) {
-        console.log(comment)
-        User.updateOne(
+exports.deleteComment = (req, res) => {
     
-            { _id: req.userId },
-            
-            { $pull: { comments: comment } }
-        )
-        // console.log("Event is deleted");
-        res.send({ message: " Your event has been Deleted" })
-    }).catch(function (error) {
+    Comment.deleteOne({
+        _id: req.params.id
+    }).then(function () {
+        console.log("Comment is deleted");
+        res.send({ message: " Your comment has been Deleted" })
+    }).catch(err => {
+        console.error("User DB Error", err)
+        process.exit()
+    })
 
-    });
 }
-
-
-
-
 
 
 // //routes to update comment 
@@ -234,31 +228,51 @@ exports.updateComment = (req,res) => {
         }
     })
 }
+
 // exports.updateComment = (req,res) =>{
-//     Comment.updateOne({
-//         _id: req.params.id
-//     },{
-//         $set: {
-//             name: req.body.name,
-//             content: req.body.content
-//         }
+//     Event.findOne({
+//         //_id: req.userId
+//         // using sample ID below for testing
+//          _id: req.params
 //     })
-//     .then(updatedComment=>{
-//         if(updatedComment.nModified!==0){
-//             res.send('comment successfully updated')
-//         } else {
-//             res.send('No updates made to cpmment')
-//         }
-//     })
-//     .catch((err)=>{
-//         res.status(500).send({
-//             message: err.message || "some error occurred while updating comments"
+//     .populate('comments','_id')
+//     .then(eventData=>{
+//         let commentIds = []
+//         //push the eventIDs associated with this user into the empty array so we can check it with the req prarms id
+//         eventData.comments.forEach(comment=>{
+//             commentIds.push(comment._id.toString())
 //         })
+//         // if the event ID in the req params is a match, pull the comment data for it 
+//         if(commentIds.includes(req.params.id.toString())){
+//             Comment.updateOne({
+//                 _id: req.params.id
+//             },{
+//                 $set: {
+//                     name: req.body.name,
+//                     content: req.body.content
+//                 }
+//             })
+//             .then(updatedComment=>{
+//                 if(updatedComment.nModified!==0){
+//                     res.send('comment successfully updated')
+//                 } else {
+//                     res.send('No updates made to cpmment')
+//                 }
+//             })
+//             .catch(
+//                 (err)=>{
+//                     res.status(500).send({
+//                         message: err.message || "some error occurred while updating comments"
+//                     })
+//                 }
+//             )
+//         } else {
+//             res.send('Comment does not exist for this event!')
+//         }
+        
+//     })
+//     .catch(err => {
+//         console.error("User DB Error", err)
+//         process.exit()
 //     })
 // }
-
-
-
-
-
-

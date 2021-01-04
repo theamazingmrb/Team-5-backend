@@ -94,10 +94,26 @@ const Comment = db.comment
 
 
 // const newComment = new Comment({
-//     name: 'comment2',
-//     content: 'Second Test',
+//     name: 'eksdfoisdjf',
+//     content: 'FOURTH Test',
 // })
 // newComment.save(newComment)
+// Event.updateOne(
+//     { _id: '5ff0beb9e86e3717de2a7301' },
+//     { $addToSet: {comments: newComment} }
+// )
+// .then(changed=>{
+//     console.log(changed)
+//     User.findOne({ _id: '5ff0336e0128527e4014b877' })
+//     .populate('events','comments')
+//     .then(userData=>{
+//         console.log(userData)
+//     })
+// })
+// .catch(err => {
+//     console.error("User DB Error", err)
+//     process.exit()
+// })
 
 // const newEvent= new Event ({
 //     eventId: '5000',
@@ -117,28 +133,25 @@ const Comment = db.comment
 // })
 // newUser.save(newUser)
 
-// User.findOne({
-//     _id: '5ff0336e0128527e4014b877'
+// const newEvent= new Event ({
+//     eventId: '7',
+//     name: 'Another event',
+//     date: new Date(),
+//     location: 'NY',
+//     comments: []
 // })
-// .populate('events','_id')
+//newEvent.save(newEvent)
+// User.updateOne(
+//     { _id: '5ff0336e0128527e4014b877' },
+//     { $addToSet: {events: newEvent} }
+// )
+// .populate('events')
 // .then(changed=>{
-//     let eventIds = []
-//     changed.events.forEach(event=>{
-//         eventIds.push(event._id);
-//         //console.log(eventIds)
-//     })
-//     Event.find({
-//         _id: { $in: [eventIds]}
-//     })
-//     .populate('comments')
-//     .then(foundEvents=>{
-//         foundEvents.forEach(singleEvent=>{
-//             console.log(singleEvent.comments)
-//         })
-//     })
-//     .catch(err => {
-//         console.error("Event DB Error", err)
-//         process.exit()
+//     console.log(changed)
+//     User.findOne({ _id: '5ff0336e0128527e4014b877' })
+//     .populate('events')
+//     .then(userData=>{
+//         console.log(userData)
 //     })
 // })
 // .catch(err => {
@@ -147,8 +160,29 @@ const Comment = db.comment
 // })
 
 
+
 //5ff035db85266c39e43aaf57
-//User.find().then(it=>{console.log(it)})
+// User.findOne({ _id: '5ff0336e0128527e4014b877' })
+// .populate('events','comments')
+// .then(it=>{
+//     let commIds =[]
+//     it.events.forEach(event=>{
+//         Comment.find({_id: event.comments},{_id:1})
+//         .then(commentData=>{
+            
+//             commentData.forEach(cData=>{
+//                 if(cData._id){
+//                     //console.log(`${cData._id}`)
+//                     commIds.push(cData._id.toString())
+//                 }
+//             })
+//             console.log(commIds)
+//         })
+//     })
+    
+// })
+
+
 
 
     // Event.findOne({
