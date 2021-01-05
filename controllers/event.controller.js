@@ -206,15 +206,6 @@ exports.seeComments = (req, res) => {
 
 // this will  delete comment in the database
 exports.deleteComment = (req, res) => {
-<<<<<<< HEAD
-    // Comment.deleteOne({
-    //     _id: req.params.id
-    // }).then(function () {
-    //     console.log("Comment is deleted");
-    //     res.send({ message: " Your comment has been Deleted" })
-    // }).catch(function (error) {
-    // });
-=======
     
     Comment.deleteOne({
         _id: req.params.id
@@ -226,7 +217,6 @@ exports.deleteComment = (req, res) => {
         process.exit()
     })
 
->>>>>>> 229694d6f7ea2dd02e39277c589faa3c3fd1bbfd
 }
 
 

@@ -15,3 +15,4 @@ module.exports = function(app){
     app.put("/events/updatedcomment/:id", controller.updateComment) //NAOMI
     
 }
+
