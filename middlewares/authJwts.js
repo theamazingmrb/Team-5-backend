@@ -20,7 +20,7 @@ verifyWebToken = (req, res, next) => {
     // uses the secret to decode the token
     jwt.verify(token, config.secret, (err, decoded) => {
         if (err){
-            return res.status(403).send({message: 'No token provided'})
+            return res.status(403).send({message: `${err}`})
         }
         // set userid to decoded id (id stored inside jwt)
         req.userId = decoded.id

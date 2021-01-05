@@ -182,7 +182,11 @@ const Comment = db.comment
     
 // })
 
-
+User.find()
+.then(it=>{
+    console.log(it)
+    
+})
 
 
     // Event.findOne({

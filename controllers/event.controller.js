@@ -122,7 +122,7 @@ exports.saveComment = (req, res) => {
     // create a new comment isntance
     const comment = new Comment({
         name: req.body.name,
-        content: req.body.content,
+        content: req.body.content
     })
     // this saves the comment
     comment.save((err, comment) => {
@@ -165,34 +165,36 @@ exports.seeComments = (req, res) => {
     //find user's event IDs so we can check them against the param id's being entered so that the current user can only access their own events' comments 
     User.findOne({
         _id: req.userId
-        // using sample ID below for testing
-        // _id: '5ff0336e0128527e4014b877' 
     })
     //get the event ids from their events array
     .populate('events','_id')
     .then(userData=>{
+        //res.send(userData)
         let eventIds = []
         //push the eventIDs associated with this user into the empty array so we can check it with the req prarms id
-        userData.events.forEach(event=>{
-            eventIds.push(event._id.toString())
-        })
-        // if the event ID in the req params is a match, pull the comment data for it 
-        if(eventIds.includes(req.params.id.toString())){
-            Event.findOne({
-                _id: req.params.id
+            if(userData.events){
+            userData.events.forEach(event=>{
+                eventIds.push(event._id.toString())
             })
-            .populate('comments')
-            .then(foundEvents=>{
-                res.send(foundEvents.comments)
-            })
-            .catch(err => {
-                console.error("Event DB Error", err)
-                process.exit()
-            })
+            // if the event ID in the req params is a match, pull the comment data for it 
+            if(eventIds.includes(req.params.id.toString())){
+                Event.findOne({
+                    _id: req.params.id
+                })
+                .populate('comments')
+                .then(foundEvents=>{
+                    res.send(foundEvents.comments)
+                })
+                .catch(err => {
+                    console.error("Event DB Error", err)
+                    process.exit()
+                })
+            } else {
+                res.send('Event does not exist for this user!')
+            }
         } else {
-            res.send('Event does not exist for this user!')
+            res.send('No events added yet!')
         }
-        
     })
     .catch(err => {
         console.error("User DB Error", err)

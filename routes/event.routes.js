@@ -9,8 +9,8 @@ module.exports = function(app){
     app.delete("/profile/myevents/:id", controller.deleteEvent) // PREET
 
     // routes for comments work
-    app.get("/events/comments/:id", controller.seeComments) // KRYSTLE
-    app.post("/events/newcomment/:id", controller.saveComment) //KRYSTLE
+    app.get("/events/comments/:id", [authJwt.verifyWebToken],controller.seeComments) // KRYSTLE
+    app.post("/events/newcomment/:id",[authJwt.verifyWebToken], controller.saveComment) //KRYSTLE
     app.delete("/events/comment/:id", controller.deleteComment) // PREET
     app.put("/events/updatedcomment/:id", controller.updateComment) //NAOMI
     
