@@ -8,6 +8,8 @@ const User = db.user
 
 // this will save event to the database
 exports.saveEvent = (req, res) => {
+    console.log(req.body)
+    console.log("REACHING THE POST ROUTE")
     // we are going to make our event object using the params returned from req
     const event = new Event({
         eventId: req.body.eventId,
