@@ -183,7 +183,8 @@ exports.seeComments = (req, res) => {
                 })
                 .populate('comments')
                 .then(foundEvents=>{
-                    res.send(foundEvents.comments)
+                    //res.send(foundEvents.comments)
+                    res.send(foundEvents)
                 })
                 .catch(err => {
                     console.error("Event DB Error", err)
