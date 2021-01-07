@@ -5,6 +5,7 @@ const cors = require("cors")
 const mongoose = require("mongoose")
 
 const app = express()
+require('dotenv').config()
 app.use(cors({origin:true}))
 
 app.use((req, res, next) => {
@@ -22,9 +23,11 @@ app.use(bodyParser.urlencoded({extended: true}))
 const db = require('./models/index')
 const Role = db.role
 
+const dbURI = process.env.MONGODB_URI || `mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`
+
 //connect the mongo database
 db.mongoose
-    .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
+    .connect(dbURI, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
