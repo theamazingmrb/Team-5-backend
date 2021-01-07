@@ -8,7 +8,7 @@ const Role = db.role
 verifyWebToken = (req, res, next) => {
     //first we declare our token which is passed in our headers
     let token = req.headers['x-access-token']
-    console.log(req)
+    // console.log(req)
     //if no token given, we respond with an error
     if(!token) {
         return res.status(403).send({message: 'No token provided'})
