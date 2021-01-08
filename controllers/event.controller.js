@@ -234,54 +234,6 @@ exports.updateComment = (req,res) => {
     })
 }
 
-// exports.updateComment = (req,res) =>{
-//     Event.findOne({
-//         //_id: req.userId
-//         // using sample ID below for testing
-//          _id: req.params
-//     })
-//     .populate('comments','_id')
-//     .then(eventData=>{
-//         let commentIds = []
-//         //push the eventIDs associated with this user into the empty array so we can check it with the req prarms id
-//         eventData.comments.forEach(comment=>{
-//             commentIds.push(comment._id.toString())
-//         })
-//         // if the event ID in the req params is a match, pull the comment data for it 
-//         if(commentIds.includes(req.params.id.toString())){
-//             Comment.updateOne({
-//                 _id: req.params.id
-//             },{
-//                 $set: {
-//                     name: req.body.name,
-//                     content: req.body.content
-//                 }
-//             })
-//             .then(updatedComment=>{
-//                 if(updatedComment.nModified!==0){
-//                     res.send('comment successfully updated')
-//                 } else {
-//                     res.send('No updates made to cpmment')
-//                 }
-//             })
-//             .catch(
-//                 (err)=>{
-//                     res.status(500).send({
-//                         message: err.message || "some error occurred while updating comments"
-//                     })
-//                 }
-//             )
-//         } else {
-//             res.send('Comment does not exist for this event!')
-//         }
-        
-//     })
-//     .catch(err => {
-//         console.error("User DB Error", err)
-//         process.exit()
-//     })
-// }
-// 
 // ======= NEW ROUTE FOR GETTING INFO FOR A SINGLE COMMENT ======
 exports.getComment = (req,res) => {
     const id = req.params.id
