@@ -23,7 +23,9 @@ app.use(bodyParser.urlencoded({extended: true}))
 const db = require('./models/index')
 const Role = db.role
 
-const dbURI = process.env.MONGODB_URI || `mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`
+const dbURI = `mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`
+//process.env.MONGODB_URI || 
+// TOOK THIS OUT AFTER DEPLOYMENT BROKE MY CODE
 
 //connect the mongo database
 db.mongoose
@@ -184,11 +186,11 @@ const Comment = db.comment
     
 // })
 
-User.find()
-.then(it=>{
-    console.log(it)
+// User.find()
+// .then(it=>{
+//     console.log(it)
     
-})
+// })
 
 
     // Event.findOne({
@@ -203,4 +205,4 @@ User.find()
     //     process.exit()
     // })
 
-//Comment.find().then(x=>{console.log(x)})
+//Comment.find({_id: '5ff784e068311e59da4bb675'}).then(x=>{console.log(x)})
