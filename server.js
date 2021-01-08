@@ -2,7 +2,6 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const dbConfig = require('./config/db.config')
 const cors = require("cors")
-const mongoose = require("mongoose")
 
 const app = express()
 require('dotenv').config()
@@ -22,6 +21,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 //Setup Mongoose
 const db = require('./models/index')
 const Role = db.role
+const User = db.user
 
 const dbURI = `mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`
 //process.env.MONGODB_URI || 
