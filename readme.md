@@ -10,6 +10,7 @@ npm i
 ```
 
 ## [Link to Frontend Repo](https://github.com/SFX818/Team-5-frontend)
+## [Link to Deployed Heroku Backend](https://fomo-nomo-backend.herokuapp.com/)
 
 ---
 
