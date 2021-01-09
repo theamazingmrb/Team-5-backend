@@ -45,13 +45,22 @@ The FOMO NOMO App is for the user who is bored at home and is looking for new vi
 
 
 <br/>
+
+
+---
+
+<br/>
+
+## General Approach:
+
+Our team worked on the backend first to establish our routes and determine how information will be saved in the database. We tested all of our routes in Postman first to verify data can be saved to our database collections.
+
+Following testing in the database, we created the frontend in order to send data back to the backend database. This required services on the frontend to hit our routes and execute functions hosted in our controllers.
+
 <br/>
 
 ---
 
----
-
-<br/>
 <br/>
 
 ## Challenges:
