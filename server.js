@@ -23,7 +23,7 @@ const db = require('./models/index')
 const Role = db.role
 const User = db.user
 
-const dbURI = `mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`
+const dbURI = process.env.MONGODB_URI || `mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`
 //process.env.MONGODB_URI || 
 // TOOK THIS OUT AFTER DEPLOYMENT BROKE MY CODE
 
