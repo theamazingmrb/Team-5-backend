@@ -3,8 +3,8 @@ const bodyParser = require('body-parser')
 const dbConfig = require('./config/db.config')
 const cors = require("cors")
 
-const app = express()
-require('dotenv').config()
+const app = express();
+require('dotenv').config();
 app.use(cors({origin:true}))
 
 app.use((req, res, next) => {
@@ -23,7 +23,7 @@ const db = require('./models/index')
 const Role = db.role
 const User = db.user
 
-const dbURI = `mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`
+const dbURI = process.env.MONGODB_URI || `mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`
 //process.env.MONGODB_URI || 
 // TOOK THIS OUT AFTER DEPLOYMENT BROKE MY CODE
 
