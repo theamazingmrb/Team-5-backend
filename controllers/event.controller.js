@@ -49,6 +49,11 @@ exports.saveEvent = (req, res) => {
 
 // this will show all events in the database
 exports.seeEvents = (req, res) => {
+    if (err) {
+        console.log(err)
+        res.status(500).send({ message: err })
+        return
+    }
     //find the user who's events you want to see
     User.findOne({
         _id: req.userId
