@@ -1,5 +1,5 @@
  # FOMO-NOMO! 
-![](src/css/images/home-page.png)
+![](images/home-page-copy.png)
  ---
 
 ## How to Set Up:
