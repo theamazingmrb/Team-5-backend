@@ -37,10 +37,13 @@ The FOMO NOMO App is for the user who is bored at home and is looking for new vi
 |`"/profile/myevents/addevent"`✅ | POST | CREATE | `event` | Saves event to user's calendar
 |`"/profile/myevents/:id"` ✅| DELETE | DELETE | `event` | Deletes event from user's calendar
 |`"/events/comments/:id"` ✅| GET | READ | `event` & `comment` | See comments for event id
+|`"/getComment/:id"` ✅| GET | READ | `event` & `comment` | Get single comment for event id (used for update)
 |`"/events/newcomment/:id"` ✅| POST | CREATE | `event` & `comment` | Save comment to event id
 |`"/events/comment/:id"` ✅| DELETE | DELETE | `event` & `comment` | Delete comment from event id
 |`"/events/updatedcomment/:id"` ✅| PUT | UPDATE | `event` & `comment` | Update comment for event id
-		
+
+
+
 <br/>
 <br/>
 

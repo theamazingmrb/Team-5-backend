@@ -217,3 +217,15 @@ exports.updateComment = (req, res) => {
         }
     })
 }
+
+// ======= NEW ROUTE FOR GETTING INFO FOR A SINGLE COMMENT ======
+exports.getComment = (req,res) => {
+    const id = req.params.id
+    Comment.find({_id: id}).then((data)=>{
+        if(!data){
+            res.status(400).send({message: "Cannot find comment ID:" + id});
+        }else{
+            res.send(data)
+        }
+    })
+}
