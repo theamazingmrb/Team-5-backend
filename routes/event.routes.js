@@ -13,7 +13,8 @@ module.exports = function(app){
     app.get("/events/comments/:id", [authJwt.verifyWebToken],controller.seeComments) // KRYSTLE
     app.post("/events/newcomment/:id",[authJwt.verifyWebToken], controller.saveComment) //KRYSTLE
     app.delete("/events/comment/:id", controller.deleteComment) // PREET
-    app.put("/events/updatedcomment/:id", controller.updateComment) //NAOMI
+    // app.put("/events/updatedcomment/:id", controller.updateComment) //NAOMI
+    app.put("/event/comments/:id", controller.updateComment) //NAOMI
     // ADDING ROUTE TO GET ONE COMMENT
     app.get("/getComment/:id",[authJwt.verifyWebToken],controller.getComment)
 }
