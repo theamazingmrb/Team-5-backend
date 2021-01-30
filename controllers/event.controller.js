@@ -202,15 +202,6 @@ exports.deleteComment = (req, res) => {
 // //routes to update comment 
 exports.updateComment = (req, res) => {
     const id = req.params.id
-    // // you have to add the items in
-    // Comment.findByIdAndUpdate(id, { content: req.body.content }).then((data) => {
-    //     console.log(data)
-    //     if (!data) {
-    //         res.status(400).send({ message: "Not found comment with id" + id });
-    //     } else {clar
-    //         res.send(data)
-    //     }
-    // })
     Event.findById({
         _id: id
     })
@@ -224,25 +215,9 @@ exports.updateComment = (req, res) => {
                     res.send(data)
                 }
             })
-            //send the whole user.events array so you can see the event data
-            // event.comments[0].content = req.body.content
             if (err) {
                 res.status(500).send({ message: "unable to update this event", err })
                 return
             }
-            // event.save()
-            // console.log(event)
         })
-}
-
-// ======= NEW ROUTE FOR GETTING INFO FOR A SINGLE COMMENT ======
-exports.getComment = (req, res) => {
-    const id = req.params.id
-    Comment.find({ _id: id }).then((data) => {
-        if (!data) {
-            res.status(400).send({ message: "Cannot find comment ID:" + id });
-        } else {
-            res.send(data)
-        }
-    })
 }

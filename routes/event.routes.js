@@ -15,7 +15,5 @@ module.exports = function(app){
     app.delete("/events/comment/:id", controller.deleteComment) // PREET
     // app.put("/events/updatedcomment/:id", controller.updateComment) //NAOMI
     app.put("/event/comments/:id", controller.updateComment) //NAOMI
-    // ADDING ROUTE TO GET ONE COMMENT
-    app.get("/getComment/:id",[authJwt.verifyWebToken],controller.getComment)
 }
 
