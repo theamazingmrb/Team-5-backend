@@ -8,7 +8,7 @@ app.use(cors({origin:'https://fomo-nomo-frontend.surge.sh/profile'}))
 require('dotenv').config();
 
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Origin', 'https://fomo-nomo-frontend.surge.sh/profile');
     //res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();
   });
