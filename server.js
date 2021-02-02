@@ -7,10 +7,6 @@ const app = express();
 require('dotenv').config();
 app.use(cors({origin:true}))
 
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    next();
-  });
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json())
@@ -23,7 +19,7 @@ const db = require('./models/index')
 const Role = db.role
 const User = db.user
 
-const dbURI = process.env.MONGODB_URI || `mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`
+const dbURI = 'mongodb://admin:password@cluster0-shard-00-00.jwt39.mongodb.net:27017,cluster0-shard-00-01.jwt39.mongodb.net:27017,cluster0-shard-00-02.jwt39.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-yu9wdl-shard-0&authSource=admin&retryWrites=true&w=majority'
 //process.env.MONGODB_URI || 
 // TOOK THIS OUT AFTER DEPLOYMENT BROKE MY CODE
 
