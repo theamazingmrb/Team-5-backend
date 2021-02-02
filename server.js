@@ -19,7 +19,7 @@ const db = require('./models/index')
 const Role = db.role
 const User = db.user
 
-const dbURI = 'mongodb://admin:password@cluster0-shard-00-00.jwt39.mongodb.net:27017,cluster0-shard-00-01.jwt39.mongodb.net:27017,cluster0-shard-00-02.jwt39.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-yu9wdl-shard-0&authSource=admin&retryWrites=true&w=majority'
+const dbURI = process.env.MONGODB_URI || `mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`
 //process.env.MONGODB_URI || 
 // TOOK THIS OUT AFTER DEPLOYMENT BROKE MY CODE
 
