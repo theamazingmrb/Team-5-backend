@@ -15,7 +15,7 @@ app.use((req, res, next) => {
 // parse requests of content-type - application/json
 app.use(bodyParser.json())
 
-//parse request of conent type = application/x-www-form-urlencoded
+//parse request of conent type = application/x--form-urlencoded
 app.use(bodyParser.urlencoded({extended: true}))
 
 //Setup Mongoose

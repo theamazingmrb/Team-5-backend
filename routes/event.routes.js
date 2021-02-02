@@ -3,6 +3,15 @@ const { authJwt } = require('../middlewares')
 
 
 module.exports = function(app){
+    app.use( (req, res, next) => {
+        //set the header and allow use of x access token
+        res.header(
+            "Access-Control-Allow-Headers",
+            "x-access-token, Origin, Content-type, Accept"
+        )
+        next()
+    })
+
     // routes for events
     app.get("/profile/myevents", [authJwt.verifyWebToken], controller.seeEvents) //NAOMI
     app.delete("/profile/myevents/:id", controller.deleteEvent) // PREET
