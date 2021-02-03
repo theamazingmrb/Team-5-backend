@@ -11,7 +11,6 @@ module.exports = function(app){
         )
         next()
     })
-
     // routes for events
     app.get("/profile/myevents", [authJwt.verifyWebToken], controller.seeEvents) //NAOMI
     app.delete("/profile/myevents/:id", controller.deleteEvent) // PREET
