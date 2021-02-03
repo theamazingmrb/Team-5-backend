@@ -83,7 +83,7 @@ exports.deleteEvent = (req, res) => {
             { _id: req.userId },
             // pull removes items from an array 
             // this removes the saved event from the events array
-            { $pull: { events: { $in: [ event ] } } }
+            { $pull: { events: { $in: [event] } } }
         ).exec((err, user) => {
             // res.send({ message: " Your user has been updated" })
             if (err) {
@@ -119,7 +119,7 @@ exports.saveComment = (req, res) => {
         )
             .then(updateEvent => {
                 if (updateEvent.nModified !== 0) {
-                    console.log('Event comments updated')
+                    // console.log('Event comments updated')
                 } else {
                     console.log('No updates made to event')
                 };
@@ -163,8 +163,7 @@ exports.seeComments = (req, res) => {
                     })
                         .populate('comments')
                         .then(foundEvents => {
-                            console.log("THESE ARE ALL THE FOUND EVENTS",foundEvents)
-                            //res.send(foundEvents.comments)
+                            // console.log(foundEvents)
                             res.send(foundEvents)
                         })
                         .catch(err => {
@@ -203,24 +202,22 @@ exports.deleteComment = (req, res) => {
 // //routes to update comment 
 exports.updateComment = (req, res) => {
     const id = req.params.id
-    // you have to add the items in
-    Comment.findByIdAndUpdate(id, { name: req.body.name, content: req.body.content }).then((data) => {
-        if (!data) {
-            res.status(400).send({ message: "Not found comment with id" + id });
-        } else {
-            res.send(data)
-        }
+    Event.findById({
+        _id: id
     })
-}
-
-// ======= NEW ROUTE FOR GETTING INFO FOR A SINGLE COMMENT ======
-exports.getComment = (req,res) => {
-    const id = req.params.id
-    Comment.find({_id: id}).then((data)=>{
-        if(!data){
-            res.status(400).send({message: "Cannot find comment ID:" + id});
-        }else{
-            res.send(data)
-        }
-    })
+        .exec((err, event) => {
+            
+            Comment.findByIdAndUpdate(event.comments[0]._id, { content: req.body.content }).then((data) => {
+                console.log(data)
+                if (!data) {
+                    res.status(400).send({ message: "Not found comment with id" + id });
+                } else {
+                    res.send(data)
+                }
+            })
+            if (err) {
+                res.status(500).send({ message: "unable to update this event", err })
+                return
+            }
+        })
 }
