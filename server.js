@@ -20,7 +20,8 @@ const db = require('./models/index')
 const Role = db.role
 const User = db.user
 
-const dbURI = process.env.MONGODB_URI || `mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`
+const dbURI = 'mongodb://dev-admin:passwordtoweak@cluster0-shard-00-00.wnln1.mongodb.net:27017,cluster0-shard-00-01.wnln1.mongodb.net:27017,cluster0-shard-00-02.wnln1.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-1d38f4-shard-0&authSource=admin&retryWrites=true&w=majority'
+//  process.env.MONGODB_URI || `mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`
 
 //connect the mongo database
 db.mongoose
